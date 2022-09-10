@@ -177,7 +177,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage2.Size = new System.Drawing.Size(545, 423);
+            this.tabPage2.Size = new System.Drawing.Size(544, 344);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Setting";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -203,27 +203,27 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.658009F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.33767F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.658009F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(541, 419);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(540, 340);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 12);
+            this.label2.Location = new System.Drawing.Point(2, 8);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(203, 12);
+            this.label2.Size = new System.Drawing.Size(202, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "Topic:";
             // 
             // btnPublish_s
             // 
             this.btnPublish_s.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPublish_s.Location = new System.Drawing.Point(209, 384);
+            this.btnPublish_s.Location = new System.Drawing.Point(208, 310);
             this.btnPublish_s.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPublish_s.Name = "btnPublish_s";
-            this.btnPublish_s.Size = new System.Drawing.Size(118, 32);
+            this.btnPublish_s.Size = new System.Drawing.Size(118, 28);
             this.btnPublish_s.TabIndex = 4;
             this.btnPublish_s.Text = "Publish";
             this.btnPublish_s.UseVisualStyleBackColor = true;
@@ -235,10 +235,10 @@
             this.rtbPayload_S.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbPayload_S.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbPayload_S.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.rtbPayload_S.Location = new System.Drawing.Point(2, 122);
+            this.rtbPayload_S.Location = new System.Drawing.Point(2, 99);
             this.rtbPayload_S.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rtbPayload_S.Name = "rtbPayload_S";
-            this.rtbPayload_S.Size = new System.Drawing.Size(537, 257);
+            this.rtbPayload_S.Size = new System.Drawing.Size(536, 207);
             this.rtbPayload_S.TabIndex = 8;
             this.rtbPayload_S.Text = "";
             this.rtbPayload_S.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lbxMonitor_KeyPress);
@@ -247,10 +247,10 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 96);
+            this.label3.Location = new System.Drawing.Point(2, 76);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(203, 12);
+            this.label3.Size = new System.Drawing.Size(202, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "Payload:";
             // 
@@ -259,10 +259,10 @@
             this.tableLayoutPanel2.SetColumnSpan(this.rtbPublishTopic_S, 3);
             this.rtbPublishTopic_S.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbPublishTopic_S.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbPublishTopic_S.Location = new System.Drawing.Point(2, 38);
+            this.rtbPublishTopic_S.Location = new System.Drawing.Point(2, 31);
             this.rtbPublishTopic_S.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rtbPublishTopic_S.Name = "rtbPublishTopic_S";
-            this.rtbPublishTopic_S.Size = new System.Drawing.Size(537, 44);
+            this.rtbPublishTopic_S.Size = new System.Drawing.Size(536, 35);
             this.rtbPublishTopic_S.TabIndex = 6;
             this.rtbPublishTopic_S.Text = "";
             // 
