@@ -1,0 +1,9 @@
+﻿{
+  "Port": 6001,
+  "Users": [
+    {
+      "UserName": "admin",
+      "Password": "admin"
+    }
+  ]
+}

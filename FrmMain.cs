@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MQTTnet;
-using System.Threading;
-using MQTTnet.Adapter;
-using MQTTnet.Diagnostics;
 using MQTTnet.Protocol;
 using MQTTnet.Server;
 using MQTTnet.Client.Receiving;
@@ -22,13 +15,12 @@ using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
 using System.IO;
 using SimpleMQTT.core;
-using System.Runtime.Serialization;
 
 namespace SimpleMQTT
 {
-    public partial class Form1 : Form
+    public partial class FrmMain : Form
     {
-        public Form1()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -75,7 +67,7 @@ namespace SimpleMQTT
             }
             catch (Exception ex)
             {
-                lbxMonitor.BeginInvoke(_updateMonitorAction, 
+                lbxMonitor.BeginInvoke(_updateMonitorAction,
                     Logger.TraceLog(Logger.Level.Fatal, "MQTT Server start fail.> \r\n" + ex.Message));
                 return;
             }
@@ -191,6 +183,11 @@ namespace SimpleMQTT
             lbxMonitor.BeginInvoke(_updateMonitorAction,
                     Logger.TraceLog(Logger.Level.Info, string.Format("MQTT Broker发布主题[{0}]成功！", topic)));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static JObject ReadConfiguration()
         {
             var filePath = $"./conf/config.json";
@@ -206,8 +203,12 @@ namespace SimpleMQTT
                 }
             }
             return null;
-
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         public void OnMqttServerStarted(EventArgs e)
         {
             //Console.WriteLine("MQTT服务启动完成！");
@@ -231,6 +232,11 @@ namespace SimpleMQTT
                 }), "Stop", 1, Color.LightGreen);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         public void OnMqttServerStopped(EventArgs e)
         {
             //Console.WriteLine("MQTT服务停止完成！");
@@ -259,8 +265,8 @@ namespace SimpleMQTT
             //Console.WriteLine($"客户端[{e.ClientId}]已连接");
             lbxMonitor.BeginInvoke(_updateMonitorAction,
                     Logger.TraceLog(Logger.Level.Info, $"客户端[{e.ClientId}]已连接"));
-            
-            
+
+
         }
 
         public void OnMqttServerClientDisconnected(MqttServerClientDisconnectedEventArgs e)
@@ -287,7 +293,7 @@ namespace SimpleMQTT
         {
             //Console.WriteLine($"客户端[{e.ClientId}]>> 主题：{e.ApplicationMessage.Topic} 负荷：{Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} Qos：{e.ApplicationMessage.QualityOfServiceLevel} 保留：{e.ApplicationMessage.Retain}");
             lbxMonitor.BeginInvoke(_updateMonitorAction,
-                    Logger.TraceLog(Logger.Level.Info, 
+                    Logger.TraceLog(Logger.Level.Info,
                     $"客户端[{e.ClientId}]>> 主题：{e.ApplicationMessage.Topic} 负荷：{Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} Qos：{e.ApplicationMessage.QualityOfServiceLevel} 保留：{e.ApplicationMessage.Retain}"));
         }
 
@@ -307,8 +313,6 @@ namespace SimpleMQTT
 
                 var mqttFactory = new MqttFactory();
 
-
-
                 var options = new MqttClientOptions
                 {
                     ClientId = txtClientID.Text.Trim(),
@@ -322,10 +326,10 @@ namespace SimpleMQTT
                     WillMessage = new MqttApplicationMessage()
                     {
                         Topic = $"LastWill/{txtClientID.Text.Trim()}",
-                        Payload= Encoding.UTF8.GetBytes("I Lost the connection!"),
+                        Payload = Encoding.UTF8.GetBytes("I Lost the connection!"),
                         QualityOfServiceLevel = MqttQualityOfServiceLevel.ExactlyOnce
                     }
-                    
+
                 };
                 if (options.ChannelOptions == null)
                 {
@@ -349,13 +353,11 @@ namespace SimpleMQTT
                 mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(OnMqttClientDisConnected);
                 mqttClient.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(OnSubscriberMessageReceived);
                 await mqttClient.ConnectAsync(options);
-                lbxMonitor.BeginInvoke(_updateMonitorAction,
-                        Logger.TraceLog(Logger.Level.Info, $"客户端[{options.ClientId}]尝试连接..."));
+                lbxMonitor.BeginInvoke(_updateMonitorAction, Logger.TraceLog(Logger.Level.Info, $"客户端[{options.ClientId}]尝试连接..."));
             }
             catch (Exception ex)
             {
-                lbxMonitor.BeginInvoke(_updateMonitorAction,
-                        Logger.TraceLog(Logger.Level.Fatal, $"客户端尝试连接出错.>{ex.Message}"));
+                lbxMonitor.BeginInvoke(_updateMonitorAction, Logger.TraceLog(Logger.Level.Fatal, $"客户端尝试连接出错.>{ex.Message}"));
             }
         }
 
@@ -369,8 +371,7 @@ namespace SimpleMQTT
             }
             catch (Exception ex)
             {
-                lbxMonitor.BeginInvoke(_updateMonitorAction,
-                        Logger.TraceLog(Logger.Level.Fatal, $"客户端尝试断开Server出错.>{ex.Message}"));
+                lbxMonitor.BeginInvoke(_updateMonitorAction, Logger.TraceLog(Logger.Level.Fatal, $"客户端尝试断开Server出错.>{ex.Message}"));
             }
         }
 
@@ -413,13 +414,11 @@ namespace SimpleMQTT
                     Retain = bool.Parse(cmbRetain.SelectedItem.ToString())
                 };
                 await mqttClient.PublishAsync(message);
-                lbxMonitor.BeginInvoke(_updateMonitorAction,
-                        Logger.TraceLog(Logger.Level.Info, string.Format("客户端[{0}]发布主题[{1}]成功！", mqttClient.Options.ClientId, topic)));
+                lbxMonitor.BeginInvoke(_updateMonitorAction, Logger.TraceLog(Logger.Level.Info, string.Format("客户端[{0}]发布主题[{1}]成功！", mqttClient.Options.ClientId, topic)));
             }
             catch (Exception ex)
             {
-                lbxMonitor.BeginInvoke(_updateMonitorAction,
-                            Logger.TraceLog(Logger.Level.Fatal, string.Format("客户端[{0}]发布主题[{1}]异常！>{2}", mqttClient.Options.ClientId, topic,ex.Message)));
+                lbxMonitor.BeginInvoke(_updateMonitorAction, Logger.TraceLog(Logger.Level.Fatal, string.Format("客户端[{0}]发布主题[{1}]异常！>{2}", mqttClient.Options.ClientId, topic, ex.Message)));
             }
         }
 
@@ -489,7 +488,6 @@ namespace SimpleMQTT
                 if (int.Parse(btnConnect.Tag.ToString()) == 0)
                 {
                     await ClientStart();
-                    
                 }
                 else
                 {
@@ -561,7 +559,7 @@ namespace SimpleMQTT
         {
             if (lbxMonitor.SelectedItem != null)
             {
-                MessageBox.Show(lbxMonitor.SelectedItem.ToString(),"Detai Info");
+                MessageBox.Show(lbxMonitor.SelectedItem.ToString(), "Detai Info");
             }
         }
 
